@@ -16,10 +16,15 @@ public class GameController : IExecute, IInitialization, ILateExecute, IClean, I
         _lateControllers = new List<ILateExecute>();
         _cleanupControllers = new List<IClean>();
         _fixedExecuteControllers = new List<IFixedExecute>();
+        _awakeExecuteControllers = new List<IAwake>();
     }
 
     internal GameController Add(IController controller)
     {
+        if(controller is IAwake awakeController)
+        {
+            _awakeExecuteControllers.Add(awakeController);
+        }
         if (controller is IInitialization initializeController)
         {
             _initializeControllers.Add(initializeController);

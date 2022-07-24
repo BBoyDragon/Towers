@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ShieldView : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public event Action Hit;
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (collision.tag == "Bullet")
+        {
+            Debug.Log("hit");
+            Hit.Invoke();
+            GameObject.Destroy(collision.gameObject);
+        }
     }
 }

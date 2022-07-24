@@ -6,13 +6,15 @@ public class Starter : MonoBehaviour
 {
     [SerializeField]
     private Data LevelData;
+    [SerializeField]
+    private UiData UiData;
     private GameInit _gameInit;
     private GameController _controllers;
 
     private void Awake()
     {
         _controllers = new GameController(); ;
-        _gameInit = new GameInit(LevelData,_controllers);
+        _gameInit = new GameInit(LevelData,UiData,_controllers);
 
 
         _controllers.Awake();
